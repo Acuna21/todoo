@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-title">
+            <!-- Icono de hamburguesa para móviles -->
+            <button class="menu-toggle" aria-label="Toggle Menu" (click)="toggleMenu()" >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2>Toodo</h2>
+        </div>
+    
+        <ul class="menu" [ngClass]="{'open': isMenuOpen}">
+            <li class="item active"><a href="#">Mis tareas</a></li>
+            <li class="item active"><a href="#">Mis tareas</a></li>
+            <!-- <li class="item active"><a href="#">Mis tareas</a></li> -->
+        </ul>
+    </div>
+</nav>

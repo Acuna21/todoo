@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<!-- El contenido de la aplicación -->
+<div class="content">
+    <div class="header">
+        <h2>10 tareas</h2>
+
+        <div class="filter-section">
+            <p>Filtrar:</p>
+            <app-combobox 
+                [items]="listCombobox"
+                [displayProperty]="'name'"
+                [startItem]="listCombobox[0]"
+                (itemSelected)="onStatusSelected($event)">
+            </app-combobox>
+            
+            <button class="large blue" (click)="showCreateTask = true">Crear tarea</button>
+        </div>
+
+    </div>
+
+    <app-task-list [tasks]="filteredTodos"></app-task-list>
+    <app-create-task></app-create-task>
+</div>
+
+<app-footer></app-footer>

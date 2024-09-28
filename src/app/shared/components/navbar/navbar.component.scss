@@ -1,0 +1,113 @@
+.navbar {
+    background-color: #f4f4f4;
+    padding: 20px 10px 0 10px;
+
+    .navbar-title {
+        display: flex;
+
+        h2{
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .menu-toggle {
+            margin-right: 10px;
+            font-size: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-font);
+            display: block;
+    
+            i{
+                color: var(--color-font);
+            }
+        }
+    }
+
+    .menu {
+        margin: 0;
+        display: none; /* Ocultamos el menú en móviles por defecto */
+
+        &.open {
+            display: flex; /* Mostrar el menú cuando se hace clic en el botón */
+        }
+        
+        .item {
+                font-size: 16px;
+                padding: 10px 15px;
+                position: relative;
+                margin-right: 10px;
+                
+                a {
+                    text-decoration: none;
+                    color: var(--color-font);
+                }
+        
+                /* Línea debajo del ítem activo o hover */
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--color-blue-primary);
+                    transition: width 0.3s ease;
+                }
+        
+                &:hover::after,
+                &.active::after {
+                width: 100%;
+                }
+            }
+        }
+}
+
+
+@media (min-width: 768px) {
+    .navbar {
+        padding: 15px 30px; /* Más espacio en pantallas grandes */
+
+        .navbar-container{
+            .navbar-title {
+                h2{
+                    font-size: 24px; /* Tamaño de texto más grande */
+                }
+
+                .menu-toggle {
+                    display: none; /* Ocultar el icono de hamburguesa */
+                }
+            }
+        
+        }
+
+    }
+}
+
+/* Para pantallas de escritorio más grandes */
+@media (min-width: 1024px) {
+    .navbar {
+        padding: 15px 30px 0 30px; /* Más espacio en pantallas grandes */
+
+        .navbar-container{
+            .navbar-title {
+                h2{
+                    font-size: 20px; /* Tamaño de texto más grande */
+                }
+
+                .menu-toggle {
+                    display: none; /* Ocultar el icono de hamburguesa */
+                }
+            }
+
+            .menu{
+                display: flex;
+
+                .item{
+                    padding: 10px 15px 10px 0;
+                }
+            }
+        }
+    }
+}
