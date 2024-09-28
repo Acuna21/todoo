@@ -1,0 +1,135 @@
+/* Estilos Mobile First */
+
+.drop-down-container {
+    width: 100%; /* El combobox ocupará todo el ancho en pantallas pequeñas */
+    font-weight: 500;
+    position: relative;
+    cursor: pointer;
+
+    %combo-box {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: stretch;
+        border-radius: 4px;
+        transition: border-color 0.2s ease;
+        background-color: white;
+    
+        input {
+            cursor: pointer;
+            height: 30px; /* Tamaño adecuado para pantallas móviles */
+            border: none;
+            margin: 2px 0px 2px 8px;
+            font-size: inherit;
+            background-color: transparent;
+            outline: none;
+            width: calc(100% - 10px);
+            font-weight: 500;
+            color: #061d50;
+        }
+
+        .icons-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            margin-right: 5px;
+    
+            span {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .combobox-blue {
+        @extend %combo-box;
+        color: var(--color-blue-primary);
+        border: 1px solid var(--color-blue-primary);
+        
+        input {
+            color: var(--color-blue-primary);
+        }
+
+        .icons-container {
+            .icon {
+            // font-weight: bolder;
+                color: var(--color-blue-primary);
+            }
+        }
+    }
+
+    .combobox-white {
+        @extend %combo-box;
+        color: #061d50;
+        border: 1px solid #cdd1dc;
+        width: 100%; /* En pantallas pequeñas ocupará el 100% */
+    
+        input {
+            color: #061d50;
+        }
+    
+        .icons-container {
+            .icon {
+                font-weight: bolder;
+                color: #061d50;
+            }
+        }
+    }
+
+    .large-white {
+        width: 100%; /* También 100% en móviles */
+        @extend %combo-box;
+        color: #061d50;
+        border: 1px solid #cdd1dc;
+    
+        input {
+            color: #061d50;
+        }
+    
+        .icons-container {
+            .icon {
+            font-weight: bolder;
+            color: #061d50;
+            }
+        }
+    }
+
+    .focus {
+        border: 1px solid #0056bf;
+    }
+
+    .disabled {
+        opacity: 0.6;
+        cursor: default;
+    }
+
+    .options-container {
+        display: none;
+        flex-direction: column;
+        z-index: 2;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        min-width: 100%;
+        background-color: white;
+        border: 1px solid var(--color-border);
+        border-radius: 0.5rem;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 250px;
+    
+        .option {
+            display: inline-flex;
+            padding: 0.5rem 0.5rem;
+            cursor: pointer;
+    
+            &:hover {
+                background-color: #f5e4e4;
+            }
+        }
+    }
+
+    .open {
+        display: flex;
+    }
+}

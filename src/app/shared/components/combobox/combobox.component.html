@@ -1,0 +1,15 @@
+<div class="drop-down-container" (clickOutsideDdown)="showOptions = false">
+    <div [ngClass]="{ 'disabled': disabled, 'focus': showOptions}" tabindex="0" (click)="showOptionsToggle()" (keypress)="showOptionsToggle()" class="{{customClass}}">
+        <input [disabled]="disabled" tabindex="-1" type="text" value="{{selectedItem ? (displayProperty ? selectedItem[displayProperty] : selectedItem) : ''}}" readonly placeholder="...">
+
+        <div class="icons-container">
+            <span><i [ngClass]="{'open-icon': showOptions}" class="fa-solid fa-angle-down icon"></i></span>
+        </div>
+    </div>
+
+    <ul class="options-container" [ngClass]="{'open': showOptions && items.length !== 0}">
+      <li class="option" *ngFor="let item of items" (click)="selectItem(item)">
+            {{ displayProperty ? item[displayProperty] : item }}
+        </li>
+    </ul>
+</div>
