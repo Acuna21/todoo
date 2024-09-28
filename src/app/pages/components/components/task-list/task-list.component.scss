@@ -1,0 +1,277 @@
+/* Estilos Mobile First */
+
+.container {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+
+    .task-list {
+        border-radius: 4px;
+        margin-bottom: 15px;
+        padding: 0; /* Remueve el padding externo */
+        background-color: #fff; /* Fondo blanco */
+        border: 1px solid var(--color-border);
+    
+        .task-header {
+            display: flex;
+            flex-direction: column;
+            padding: 5px 15px;
+            background-color: #f5f5f5; /* Fondo gris claro */
+            border-bottom: 1px solid #ddd; /* Separador */
+
+            p{
+                color: var(--color-font);
+                font-size: 14px;
+            }
+
+            .title {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            strong{
+                color: var(--color-gray);
+            }
+
+            .created-at {
+                margin: 0;
+                font-weight: 500;
+                color: var(--color-gray); /* Color gris más claro */
+            }
+
+            .completed{
+                color:var(--color-green);
+                font-weight: 600;
+            }
+
+            .pending{
+                color:red;
+                font-weight: 600;
+            }
+        }
+
+        .associated-title {
+            font-size: 14px;
+            margin: 10px;
+            color: var(--color-font);
+            font-weight: 500;
+        }
+
+        .people-list {
+            list-style-type: none;
+            padding: 0 10px;
+
+            .person-li {
+                flex-direction: column;
+                display: flex;
+                
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 4px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+
+
+                .infor-user{
+                    display: flex;
+                    align-items: center;
+                    
+                    img {
+                        width: 60px; /* Tamaño de la imagen */
+                        height: 60px; /* Cuadrado */
+                        border-radius: 50%; /* Circular */
+                        object-fit: cover; /* Para asegurarnos que la imagen se ajuste bien */
+                    }
+            
+                    .person-details{
+                        margin-left: 5px;
+                        .name{
+                            color:var(--color-blue-primary);
+                            font-size: 15px;
+                            font-weight: 600;
+                        }
+    
+                        .age{
+                            color:var(--color-gray);
+                            font-size: 13px;
+                        }
+                    }
+                }
+        
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                }
+
+                .skills{
+                    display: flex;
+                    margin-top: 10px;
+                    gap: 5px;
+
+                    ul{
+                        margin: 0;
+                    }
+
+                    i{
+                        font-size: 10px;
+                    }
+
+                    span{
+                        font-size: 14px;
+                    }
+
+                    p{
+                        color: var(--color-font);
+                        font-size: 15px;
+                    }
+
+                    ul{
+                        justify-items: stretch
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Estilos responsivos para pantallas más grandes */
+
+@media (min-width: 768px) {
+    .container {
+        padding: 20px;
+
+        .task-list {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+    
+            .task-header {
+                padding: 20px 10px;
+
+                p{
+                    font-size: 17px;
+                }
+    
+                .title {
+                    font-size:19px;
+                }
+            }
+    
+            .associated-title {
+                font-size: 18px;
+                margin-top: 15px;
+            }
+
+            .people-list{
+                .person-li{
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    font-size: 16px;
+
+                    .infor-user{
+                        img{
+                            width: 60px; /* Imagen más grande en pantallas más grandes */
+                            height: 60px;
+                        }
+
+                        .person-details{
+                            .name {
+                                font-size: 18px;
+                            }
+
+                            .age{
+                                font-size: 16px;
+                            }
+                        }
+
+                    
+                    }
+
+                    .skills{
+                        p {
+                            font-size: 18px;
+                        }
+
+                        .skills-list{
+                            .skill{
+                                span{
+                                    font-size: 17px;
+                                }                               }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* Estilos adicionales para pantallas grandes */
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .task-list {
+            padding: 0;
+            border-radius: 6px;
+    
+            .task-header {
+                padding: 10px;
+    
+                .title {
+                    font-size: 18px;
+                }
+    
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .associated-title{
+                font-size: 16px;
+            }
+    
+            .people-list{
+                .person-li{
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    font-size: 16px;
+
+                    .infor-user{
+                        img{
+                            width: 60px; /* Imagen más grande en pantallas más grandes */
+                            height: 60px;
+                        }
+
+                        .person-details{
+                            .name {
+                                font-size: 16px;
+                            }
+
+                            .age{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    .skills{
+                        p {
+                            font-size: 16px;
+                        }
+
+                        .skills-list{
+                            .skill{
+                                span{
+                                    font-size: 15px;
+                                }                               }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

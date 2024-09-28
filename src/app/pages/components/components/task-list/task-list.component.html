@@ -1,0 +1,45 @@
+<ul class="container">
+    <li *ngFor="let task of tasks" class="task-list">
+        <div class="task-header">
+            <div>
+                <h3 class="title">{{ task.title }}</h3>
+                <p class="created-at"><strong>Creada el:</strong> {{ task.createdAt | date:'longDate' }}</p>
+                <p><strong>Estado:</strong>
+                    <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+                        {{ task.completed ? 'Completada' : 'Pendiente' }}
+                    </span>
+            </div>
+            
+        </div>
+
+        <h4 class="associated-title">Personas asociadas:</h4>
+
+        <ul class="people-list">
+            <li *ngFor="let person of task.people" class="person-li">
+                
+                <div class="infor-user">
+                    <img [src]="person.imageUrl" alt="{{ person.name }}">
+
+                    <div class="person-details">
+                        <p class="name">{{ person.name }}</p>
+                        <p class="age"><strong>Edad:</strong> {{ person.age }} años</p>
+                    </div>
+                </div>
+
+
+                <div class="skills">
+                    <p>Habilidades:</p>
+                    <ul class="skills-list">
+                        <li *ngFor="let skill of person.skills" class="skill">
+                            <span>
+                                <i class="fa-solid fa-circle" style="color: #4977c5;"></i>
+                                {{ skill }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+            </li>
+        </ul>
+    </li>
+</ul>
