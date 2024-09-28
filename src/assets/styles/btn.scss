@@ -1,0 +1,261 @@
+@import "../styles/colors";
+
+%btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color .25s ease 0s;
+    // width: 90px;
+    // height: 38px;
+}
+
+.btn__icon {
+    color: var( --color-gray);
+    transition: all .2s linear;
+    border-radius: 50%;
+    position: relative;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    height: 38px;
+    width: 38px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    a,  i {
+        font-size: 20px;
+        &.bold {
+            font-weight: bold;
+        }
+    }
+
+    &.btn__big {
+        padding: 26px;
+    }
+
+    &.btn__md {
+        height: 35px;
+        width: 35px;
+
+        a,
+        i {
+            font-size: 18px;
+        }
+    }
+
+    &.btn__ssm {
+        padding: 5px;
+        width: 28px;
+        height: 28px;
+
+        a,
+        i {
+            font-size: 15px;
+        }
+
+    }
+
+    &.btn__sm {
+        a,
+        i {
+            font-size: 12px;
+        }
+    }
+
+    &.btn__bg__dark {
+        background-color: rgba($color: black, $alpha: .2);
+    }
+
+    &:hover,
+    &.hover {
+        // color: $blue-tittle;
+        background-color: rgba(163, 176, 180, .226);
+    }
+
+    &.btn__float {
+        background-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+// Grupo de botones 
+// botones al lado
+.beside-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vertical-group {
+    flex-direction: column;
+
+    button:first-child {
+        margin-bottom: 15px;
+    }
+}
+
+// Tamaño
+.x-large {
+    @extend %btn;
+    padding: 14px 19px;
+    font-size: clamp(16px, 2vw, 18px);
+}
+
+.large {
+    @extend %btn;
+    padding: 9px 15px;
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+.medium {
+    @extend %btn;
+    padding: 8px 11px;
+    font-weight: 600;
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+.small {
+    @extend %btn;
+    padding: 5px 15px;
+    font-weight: 600;
+    font-size:clamp(14px, 2vw, 16px);
+}
+
+.xssmall {
+    @extend %btn;
+    padding: 4px 10px;
+    font-weight: 600;
+    min-width: auto;
+    min-height: auto;
+    height: auto;
+    border-radius: 4px;
+}
+
+// Colores de los botones
+.blue {
+    font-weight: 600;
+    background-color: var(--blue);
+    border: none;
+    color: #fff;
+    transition: .2s;
+
+    &:not(:disabled):hover {
+        // background-color: $blue-hover;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+.blue-sample {
+    cursor: default;
+    border: none;
+    color: #fff;
+    background-color: var(--blue);
+}
+
+.blue-transparent {
+    border: none;
+    background-color: transparent;
+    color: var(--blue);
+    padding: 0;
+}
+
+.white {
+    background-color: #ffff;
+    border: 1px solid var(--blue);;
+    color: var(--blue);;
+
+    &:hover {
+        opacity: 0.86;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+.white-sample {
+    // cursor: default;
+    background-color: #fff;
+    border: none;
+    color:var(--blue);
+}
+
+%red {
+    color: red;
+    background-color: transparent;
+
+    &:hover {
+        opacity: 0.87;
+    }
+}
+
+.red-border {
+    @extend %red;
+    border: 1px solid red;
+}
+
+.red-simple {
+    @extend %red;
+    border: 0px;
+}
+
+.transparent {
+    background-color: transparent;
+    border: 1px solid var( --color-border);
+    color:var( --color-font)
+}
+
+.gray{
+    background-color: var(--color-gray);
+    color:var( --color-font);
+    border: none;
+    transform: 0.2s;
+}
+
+// Para mostrar opciones (tres puntos)
+.show-tooltip{
+    position: absolute;
+    padding: 10px 13px;
+    display: flex;
+    top: 42px;
+    right: 16px;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    z-index: 5;
+    width: 210px;
+    
+    li{
+        border-radius: 6px;
+        button{
+        width: 100%;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        color:var(--color-font);
+        border-radius: 6px;
+        
+            // &:hover{
+            //     background-color: $hover;
+            // }
+        }
+    }
+}
