@@ -15,13 +15,19 @@
             <button class="large blue" (click)="createTask()">Crear tarea</button>
 
             <div class="pagination">
-                <i class="fa-solid fa-chevron-left" (click)="goToPreviousPage()" [class.disabled]="currentPage === 1"></i>
-                <span>Página {{currentPage}}</span>
-                <i class="fa-solid fa-chevron-right" (click)="goToNextPage()" [class.disabled]="(currentPage * pageSize) >= filteredTodos.length"></i>
+                <i class="fa-solid fa-chevron-left" 
+                (click)="goToPreviousPage()" 
+                [class.disabled]="currentPage === 1"></i>
+
+                <span>Página {{currentPage}} de {{totalPages}}</span>
+
+                <i class="fa-solid fa-chevron-right" 
+                (click)="goToNextPage()" 
+                [class.disabled]="currentPage === totalPages"></i>
             </div>
     </div>
 </div>
 
 <app-task-list 
-    [tasks]="filteredTodos" 
+    [tasks]="paginatedTodos" 
     (onComplete)="updateTodoState($event.id)" />

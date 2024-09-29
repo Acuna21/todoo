@@ -43,10 +43,8 @@ export class TaskComponent {
   onStatusSelected(item: any) {
     // Filtrar tareas según el estado seleccionado
     if (item.id === 0) {
-      // Mostrar todas las tareas
       this.filteredTodos = this.todos;
     } else if (item.id === 1) {
-      // Mostrar solo tareas completadas
       this.filteredTodos = this.todos.filter(task => task.completed);
     } else if (item.id === 2) {
       // Mostrar solo tareas pendientes
@@ -86,4 +84,7 @@ export class TaskComponent {
     this._todosService.updateState(todoId);
   }
 
+  get totalPages(): number {
+    return Math.ceil(this.filteredTodos.length / this.pageSize);
+  }
 }
