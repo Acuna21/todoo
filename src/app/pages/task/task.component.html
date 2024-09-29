@@ -1,0 +1,16 @@
+<div class="filter-container">
+    <h2>{{this.filteredTodos.length}} tareas creadas</h2>
+
+    <div class="filter-section">
+        <p>Filtrar:</p>
+        <app-combobox 
+            [items]="listCombobox"
+            [displayProperty]="'name'"
+            [startItem]="listCombobox[0]"
+            (itemSelected)="onStatusSelected($event)">
+        </app-combobox>
+    </div>
+    <button class="large blue" (click)="createTask()">Crear tarea</button>
+</div>
+
+<app-task-list [tasks]="filteredTodos"></app-task-list>

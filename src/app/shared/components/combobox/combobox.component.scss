@@ -1,4 +1,7 @@
 /* Estilos Mobile First */
+:host{
+    width: 100%;
+}
 
 .drop-down-container {
     width: 100%; /* El combobox ocupará todo el ancho en pantallas pequeñas */

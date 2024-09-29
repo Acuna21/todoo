@@ -25,30 +25,37 @@
             <!-- Lista de inputs dinámicos de habilidades -->
             <div *ngFor="let skillInput of skillInputs; let i = index" class="skill">
                 <input type="text" [(ngModel)]="skillInputs[i]" placeholder="Añadir habilidad">
-                <span (click)="addSkillInput()"><i class="fa-solid fa-circle-plus"></i></span>
+                
+                <span *ngIf="i === skillInputs.length - 1" (click)="addSkillInput()">
+                    <i class="fa-solid fa-circle-plus"></i> <!-- Solo el último input muestra el icono de agregar -->
+                </span>
+
+                <span *ngIf="i !== skillInputs.length - 1" (click)="removeSkillInput(i)">
+                    <i class="fa-solid fa-trash"></i> <!-- Los demás inputs muestran el icono de eliminar -->
+                </span>
+
             </div>
         </div>
 
         <div style="display: flex;justify-content: flex-end;margin: 10px;">
-            <button class="blue small">Guardar persona</button>
+            <button class="blue small" (click)="addPerson()">Guardar persona</button>
         </div>
     </div>
 
     <ul class="person-save">
         <h4>Personas asociadas:</h4>
-        <!-- Cuando se agrega una persona -->
-        <li class="person-list">
+        <li *ngFor="let person of people" class="person-list">
             <span class="remove-icon">
-            <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-trash" (click)="removePerson(person)"></i>
             </span>
         
             <div class="person-details">
-            <p class="person-name">Sara Acuña</p>
-            <p class="person-age">Edad: 25</p>
+                <p class="person-name">{{ person.name }}</p>
+                <p class="person-age">Edad: {{ person.age }}</p>
         
-            <p class="person-skills">
-                <strong>Habilidades:</strong> HTML, CSS, JavaScript
-            </p>
+                <p class="person-skills">
+                    <strong>Habilidades:</strong> {{ person.skills.join(', ') }}
+                </p>
             </div>
         </li>
     </ul>

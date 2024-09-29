@@ -31,8 +31,7 @@
         border-radius: 4px;
         border: 1px solid var(--color-border);
         width: 100%;
-        color:var(--color-font)
-
+        color:var(--color-font);
 
         &:focus{
             border: 1px solid var(--color-primary);
@@ -56,6 +55,7 @@
                 cursor: pointer;
             }
         }
+        
         .add-skill-container {
             display: flex;
             flex-direction: column;
@@ -66,6 +66,23 @@
     
                 i{
                     margin: 0 5px;
+                    cursor: pointer;
+                }
+
+                .fa-circle-plus{
+                    font-size: 14px;
+                    &:hover{
+                        color:Var(--blue);
+
+                    }
+                }
+
+                .fa-trash{
+                    font-size: 12px;
+                    &:hover{
+                        color:red;
+
+                    }
                 }
             }
     
