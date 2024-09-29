@@ -20,7 +20,6 @@ export class TodooService {
   getTodos(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl).pipe(
       map( data => {
-        console.log('Data')
         this.todosList$.next(data);
         return data
       })
