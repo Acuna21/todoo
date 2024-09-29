@@ -11,6 +11,7 @@ import { CreateTaskComponent } from './pages/create-task/create-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './pages/task/task.component';
+import { AvatarPipe } from './shared/pipes/avatar.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TaskComponent } from './pages/task/task.component';
     ComboboxComponent,
     CreateTaskComponent,
     TaskComponent,
+    AvatarPipe,
   ],
   imports: [
     BrowserModule,
