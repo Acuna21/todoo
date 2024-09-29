@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'; 
+import { Router } from '@angular/router';
+import { TodooService } from 'src/app/shared/services/todoo.service';
 
 @Component({
   selector: 'app-create-task',
@@ -15,7 +17,9 @@ export class CreateTaskComponent {
   
   newSkill: string = '';
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _todosService:TodooService,
+    private _router: Router,
   ) {
     this.taskForm = this.fb.group({
       taskName: ['', [Validators.required, Validators.minLength(5)]],
@@ -39,8 +43,6 @@ export class CreateTaskComponent {
       age: [null, [Validators.required, Validators.min(18)]],
       skills: this.fb.array([this.fb.control('', Validators.required)])
     });
-
-    console.log("Agregar persona:", personForm);
     this.people.push(personForm);
   }
 
@@ -48,16 +50,6 @@ export class CreateTaskComponent {
   addSkill(personIndex: number) {
     const skills = this.getSkills(personIndex);
     skills.push(this.fb.control('', Validators.required)); 
-  }
-
-  // Método para guardar la tarea
-  saveTask() {
-    console.log('Tarea guardada:', this.taskForm);
-    // if (this.taskForm.valid) {
-    //   console.log('Tarea guardada:', this.taskForm.value);
-    // } else {
-    //   alert('Por favor, complete todos los campos correctamente.');
-    // }
   }
 
   // Obtener el FormArray de habilidades de una persona
@@ -71,11 +63,9 @@ export class CreateTaskComponent {
     if (skills.length > 1) { // Asegúrate de que haya más de una habilidad para eliminar
         skills.removeAt(skillIndex);
     } else {
-        // Puedes mostrar un mensaje o manejar el caso cuando no hay más habilidades
         alert('Debes tener al menos una habilidad.');
     }
   }
-
 
   // Pra validar que no haya nombres repetidos en el FormArray de personas
   validePersonNames: ValidatorFn = (control: AbstractControl):ValidationErrors | null =>{
@@ -84,6 +74,18 @@ export class CreateTaskComponent {
     if (founded.length > 1) return { repeat: 'Valor repetido' };
     else return null
   };
+
+   // Método para guardar la tarea
+  saveTask() {
+    if (this.taskForm.valid) {
+      console.log('Tarea guardada:', this.taskForm.value);
+      this._todosService.createTodos(this.taskForm.value);
+      this._router.navigate(['/tasks']); 
+
+    } else {
+      alert('Por favor, complete todos los campos correctamente.');
+    }
+  }
 
 
 }

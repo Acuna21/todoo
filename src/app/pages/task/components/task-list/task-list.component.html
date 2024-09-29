@@ -3,7 +3,7 @@
         <div class="task-header">
             <div>
                 <h3 class="title">{{ task.title }}</h3>
-                <p class="created-at"><strong>Creada el:</strong> {{ task.createdAt | date:'longDate' }}</p>
+                <p class="created-at"><strong>Fecha limite:</strong> {{ task.dueDate | date:'longDate' }}</p>
                 <p><strong>Estado:</strong>
                     <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
                         {{ task.completed ? 'Completada' : 'Pendiente' }}
@@ -31,7 +31,7 @@
             <li *ngFor="let person of task.people" class="person-li">
                 
                 <div class="infor-user">
-                    <img [src]="person.imageUrl" alt="{{ person.name }}">
+                    <img [src]="person.imageUrl | avatar" alt="{{ person.name }}">
 
                     <div class="person-details">
                         <p class="name">{{ person.name }}</p>

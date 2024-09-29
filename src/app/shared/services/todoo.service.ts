@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Task } from '../models/task.interface';
+import { Task, TaskCreate } from '../models/task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,25 @@ export class TodooService {
         return data
       })
     )
+  }
+
+  createTodos(newTask:TaskCreate):Task{
+    const todos = this.todosList$.value;
+
+    const task:Task={
+      id:todos.length + 1,
+      title: newTask.title,
+      completed:newTask.completed,
+      dueDate:newTask.dueDate,
+      people:newTask.people,
+    }
+
+    this.todosList$.next([
+      task,
+      ...todos
+    ])
+
+    return task
   }
 
   updateState(todoId:number){

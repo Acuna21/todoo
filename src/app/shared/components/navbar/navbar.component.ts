@@ -9,7 +9,6 @@ export class NavbarComponent {
   isMenuOpen = false;
 
   toggleMenu() {
-    console.log("mostara")
     this.isMenuOpen = !this.isMenuOpen;
   }
 

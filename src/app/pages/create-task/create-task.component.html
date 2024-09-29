@@ -48,5 +48,5 @@
         </form>
     </div>
 
-    <button (click)="saveTask()" class="large blue" style="margin-top: 15px;">Guardar tarea</button>
+    <button (click)="saveTask()" [disabled]="!taskForm.valid" class="large blue" style="margin-top: 15px;">Guardar tarea</button>
 </div>
