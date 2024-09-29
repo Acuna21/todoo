@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'; 
 
 @Component({
   selector: 'app-create-task',
@@ -14,7 +14,6 @@ export class CreateTaskComponent {
   skillInputs: Array<string> = [''];
   
   newSkill: string = '';
-
   constructor(
     private fb: FormBuilder
   ) {
@@ -36,7 +35,7 @@ export class CreateTaskComponent {
   // Método para agregar una persona asociada
   addPerson() {
     const personForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
+      name: ['', [Validators.required, Validators.minLength(5), this.validePersonNames]],
       age: [null, [Validators.required, Validators.min(18)]],
       skills: this.fb.array([this.fb.control('', Validators.required)])
     });
@@ -48,21 +47,17 @@ export class CreateTaskComponent {
    // Añadir una nueva habilidad a una persona
   addSkill(personIndex: number) {
     const skills = this.getSkills(personIndex);
-    skills.push(this.fb.control('', Validators.required)); // Añade un nuevo control para la habilidad
+    skills.push(this.fb.control('', Validators.required)); 
   }
 
-  // Eliminar una persona del FormArray
-  removePerson(index: number) {
-    this.people.removeAt(index);
-  }
-  
   // Método para guardar la tarea
   saveTask() {
-    if (this.taskForm.valid) {
-      console.log('Tarea guardada:', this.taskForm.value);
-    } else {
-      alert('Por favor, complete todos los campos correctamente.');
-    }
+    console.log('Tarea guardada:', this.taskForm);
+    // if (this.taskForm.valid) {
+    //   console.log('Tarea guardada:', this.taskForm.value);
+    // } else {
+    //   alert('Por favor, complete todos los campos correctamente.');
+    // }
   }
 
   // Obtener el FormArray de habilidades de una persona
@@ -70,35 +65,25 @@ export class CreateTaskComponent {
     return this.people.at(personIndex).get('skills') as FormArray;
   }
 
-  // Guardar persona
-  savePerson(index: number) {
-    const person = this.people.at(index);
-    
-    if (person.valid) {
-      // Aquí podrías hacer lo que desees con la persona (ej. enviar a un servicio o guardar en un backend)
-      console.log('Persona guardada:', person.value);
-      
-      // Limpiar campos de entrada de la persona
-      person.reset({
-        name: '',
-        age: null,
-        skills: [this.fb.control('')]
-      });
+  // Método para eliminar una habilidad de una persona
+  removeSkill(personIndex: number, skillIndex: number) {
+    const skills = this.getSkills(personIndex);
+    if (skills.length > 1) { // Asegúrate de que haya más de una habilidad para eliminar
+        skills.removeAt(skillIndex);
     } else {
-      alert('Por favor, complete todos los campos correctamente para esta persona.');
+        // Puedes mostrar un mensaje o manejar el caso cuando no hay más habilidades
+        alert('Debes tener al menos una habilidad.');
     }
   }
 
-  // Método para eliminar una habilidad de una persona
-removeSkill(personIndex: number, skillIndex: number) {
-  const skills = this.getSkills(personIndex);
-  if (skills.length > 1) { // Asegúrate de que haya más de una habilidad para eliminar
-      skills.removeAt(skillIndex);
-  } else {
-      // Puedes mostrar un mensaje o manejar el caso cuando no hay más habilidades
-      alert('Debes tener al menos una habilidad.');
-  }
-}
+
+  // Pra validar que no haya nombres repetidos en el FormArray de personas
+  validePersonNames: ValidatorFn = (control: AbstractControl):ValidationErrors | null =>{
+    const names = this.people.controls.map(person => person.get('name')?.value);
+    const founded = names.filter( name => name === control.value );
+    if (founded.length > 1) return { repeat: 'Valor repetido' };
+    else return null
+  };
 
 
 }

@@ -48,28 +48,5 @@
         </form>
     </div>
 
-    <!-- Mostrar la lista de personas asociadas solo si hay al menos una persona -->
-    <!-- <ul class="person-save">
-        <h4>Personas asociadas:</h4>
-        <li *ngFor="let person of taskForm.get('people')?.value; let i = index" class="person-list">
-            <span class="remove-icon">
-                <i class="fa-solid fa-trash" (click)="removePerson(i)"></i>
-            </span>
-
-            <div class="person-details">
-                <p class="person-name">Nombre: {{ person.name }}</p>
-                <p class="person-age">Edad: {{ person.age }}</p>
-
-                <p class="person-skills">
-                    <strong>Habilidades:</strong>
-                    <span *ngIf="person.skills && person.skills.length > 0">
-                        {{ person.skills.join(', ') }}
-                    </span>
-                    <span *ngIf="person.skills.length === 0">Sin habilidades</span>
-                </p>
-            </div>
-        </li>
-    </ul> -->
-
     <button (click)="saveTask()" class="large blue" style="margin-top: 15px;">Guardar tarea</button>
 </div>

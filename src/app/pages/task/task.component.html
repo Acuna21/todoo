@@ -1,16 +1,27 @@
 <div class="filter-container">
     <h2>Total tareas: {{this.filteredTodos.length}}</h2>
 
-    <div class="filter-section">
-        <p>Filtrar:</p>
-        <app-combobox 
-            [items]="listCombobox"
-            [displayProperty]="'name'"
-            [startItem]="listCombobox[0]"
-            (itemSelected)="onStatusSelected($event)">
-        </app-combobox>
+    <div class="group">
+            <div class="filter-section">
+                <p>Filtrar:</p>
+                <app-combobox 
+                    [items]="listCombobox"
+                    [displayProperty]="'name'"
+                    [startItem]="listCombobox[0]"
+                    (itemSelected)="onStatusSelected($event)">
+                </app-combobox>
+            </div>
+            
+            <button class="large blue" (click)="createTask()">Crear tarea</button>
+
+            <div class="pagination">
+                <i class="fa-solid fa-chevron-left" (click)="goToPreviousPage()" [class.disabled]="currentPage === 1"></i>
+                <span>Página {{currentPage}}</span>
+                <i class="fa-solid fa-chevron-right" (click)="goToNextPage()" [class.disabled]="(currentPage * pageSize) >= filteredTodos.length"></i>
+            </div>
     </div>
-    <button class="large blue" (click)="createTask()">Crear tarea</button>
 </div>
 
-<app-task-list [tasks]="filteredTodos"></app-task-list>
+<app-task-list 
+    [tasks]="filteredTodos" 
+    (onComplete)="updateTodoState($event.id)" />
