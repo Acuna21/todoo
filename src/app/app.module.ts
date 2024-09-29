@@ -8,7 +8,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { TaskListComponent } from './pages/task/components/task-list/task-list.component';
 import { ComboboxComponent } from './shared/components/combobox/combobox.component';
 import { CreateTaskComponent } from './pages/create-task/create-task.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './pages/task/task.component';
 
@@ -26,7 +26,8 @@ import { TaskComponent } from './pages/task/task.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

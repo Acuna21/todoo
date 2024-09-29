@@ -1,65 +1,75 @@
 <div class="create-task-container">
     <h3>Crear nueva tarea</h3>
-    
-    <div class="option">
-        <label for="taskName">Nombre de la tarea</label>
-        <input cl type="text" id="taskName" [(ngModel)]="taskName" placeholder="Escribe el nombre de la tarea">
-    </div>
-    
-    <div class="option">
-            <label for="dueDate">Fecha límite</label>
-            <input type="date" id="dueDate" [(ngModel)]="dueDate">
-    </div>
 
-    <!-- Cada vez que se agrega una persona sale esto  -->
-    <div class="add-person-container">
-        <div class="header">
-            <h4 class="title">Asociar personas</h4>
-            <i class="fa-solid fa-user-plus"></i>
-        </div>
-
-        <input type="text" [(ngModel)]="newPerson.name" placeholder="Nombre completo">
-        <input type="number" [(ngModel)]="newPerson.age" placeholder="Edad">
-
-        <div class="add-skill-container">
-            <!-- Lista de inputs dinámicos de habilidades -->
-            <div *ngFor="let skillInput of skillInputs; let i = index" class="skill">
-                <input type="text" [(ngModel)]="skillInputs[i]" placeholder="Añadir habilidad">
-                
-                <span *ngIf="i === skillInputs.length - 1" (click)="addSkillInput()">
-                    <i class="fa-solid fa-circle-plus"></i> <!-- Solo el último input muestra el icono de agregar -->
-                </span>
-
-                <span *ngIf="i !== skillInputs.length - 1" (click)="removeSkillInput(i)">
-                    <i class="fa-solid fa-trash"></i> <!-- Los demás inputs muestran el icono de eliminar -->
-                </span>
-
+    <div class="task-container">
+        <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+            <div class="option">
+                <label for="taskName">Nombre de la tarea</label>
+                <input type="text" id="taskName" formControlName="taskName" placeholder="Escribe el nombre de la tarea">
             </div>
-        </div>
 
-        <div style="display: flex;justify-content: flex-end;margin: 10px;">
-            <button class="blue small" (click)="addPerson()">Guardar persona</button>
-        </div>
+            <div class="option">
+                <label for="dueDate">Fecha límite</label>
+                <input type="date" id="dueDate" formControlName="dueDate">
+            </div>
+
+            <!-- Personas asociadas -->
+            <div formArrayName="people">
+                
+                <div class="section-title">
+                    <h4>Asociar persona</h4>
+                    <i class="fa-solid fa-user-plus" (click)="addPerson()"></i>
+                </div>
+
+                <div *ngFor="let person of people.controls; let i = index" [formGroupName]="i" class="form-people">
+                    <div class="add-person-container">
+                        <i class="fa-solid fa-xmark" title="Eliminar tarea"></i>
+
+                        <input type="text" formControlName="name" placeholder="Nombre completo">
+                        <input type="number" formControlName="age" placeholder="Edad">
+
+                        <!-- Habilidades -->
+                        <div formArrayName="skills" class="add-skill-container">
+                            <div *ngFor="let skill of getSkills(i).controls; let j = index" class="skill">
+                                <input [formControlName]="j" placeholder="Añadir habilidad">
+
+                                <i class="fa-solid fa-trash" (click)="removeSkill(i, j)" *ngIf="j < getSkills(i).length - 1"></i>
+
+                                <!-- Mostrar el botón de agregar solo en el último input -->
+                                <span *ngIf="j === getSkills(i).length - 1" (click)="addSkill(i)">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <ul class="person-save">
+    <!-- Mostrar la lista de personas asociadas solo si hay al menos una persona -->
+    <!-- <ul class="person-save">
         <h4>Personas asociadas:</h4>
-        <li *ngFor="let person of people" class="person-list">
+        <li *ngFor="let person of taskForm.get('people')?.value; let i = index" class="person-list">
             <span class="remove-icon">
-                <i class="fa-solid fa-trash" (click)="removePerson(person)"></i>
+                <i class="fa-solid fa-trash" (click)="removePerson(i)"></i>
             </span>
-        
+
             <div class="person-details">
-                <p class="person-name">{{ person.name }}</p>
+                <p class="person-name">Nombre: {{ person.name }}</p>
                 <p class="person-age">Edad: {{ person.age }}</p>
-        
+
                 <p class="person-skills">
-                    <strong>Habilidades:</strong> {{ person.skills.join(', ') }}
+                    <strong>Habilidades:</strong>
+                    <span *ngIf="person.skills && person.skills.length > 0">
+                        {{ person.skills.join(', ') }}
+                    </span>
+                    <span *ngIf="person.skills.length === 0">Sin habilidades</span>
                 </p>
             </div>
         </li>
-    </ul>
-
+    </ul> -->
 
     <button (click)="saveTask()" class="large blue" style="margin-top: 15px;">Guardar tarea</button>
 </div>
