@@ -5,43 +5,43 @@
 
     .footer-container {
         display: flex;
-        flex-direction: column; /* Estilo vertical para móviles */
+        flex-direction: column; 
         align-items: center;
     
         .footer-links {
-            margin-bottom: 10px; /* Separar los enlaces del texto de derechos de autor */
-            
+            margin-bottom: 10px; 
             a {
-                margin: 0 10px; /* Espacio entre los enlaces */
+                margin: 0 10px; 
                 text-decoration: none;
                 color: var(--color-font);
                 font-size: 16px;
                 transition: color 0.3s ease;
     
-            &:hover {
-                text-decoration: underline;
-                color: #007BFF; /* Cambia el color al hacer hover */
-            }
+                &:hover {
+                    text-decoration: underline;
+                    color: #007BFF; 
+                }
             }
         }
     
         .footer-brand {
             p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--color-font);
+                margin: 0;
+                font-size: 14px;
+                color: var(--color-font);
             }
         }
     }
-
-    @media (min-width: 768px) {
-        .footer-container {
-            flex-direction: row; /* Estilo horizontal en pantallas más grandes */
-            justify-content: space-between;
-        }
-    
-        .footer-links {
-            margin-bottom: 0;
-        }
-    }
 }
+
+
+// @media (min-width: 1024px){
+//     .footer-container {
+//         flex-direction: row; /* Estilo horizontal en pantallas más grandes */
+//         justify-content: space-between;
+//     }
+
+//     .footer-links {
+//         margin-bottom: 0;
+//     }
+// }

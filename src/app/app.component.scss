@@ -3,4 +3,17 @@
     padding: 0px 10px;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - (50px + 137px));
+}
+
+@media (min-width: 768px) {
+    .content{
+        height: calc(100vh - (137px + 65px));
+    }
+}
+
+@media (min-width: 1024px){
+    .content{
+        height: calc(100vh - (90px + 137px));
+    }
 }
