@@ -19,7 +19,6 @@ import { AvatarPipe } from './shared/pipes/avatar.pipe';
     NavbarComponent,
     FooterComponent,
     TaskListComponent,
-    ComboboxComponent,
     CreateTaskComponent,
     TaskComponent,
     AvatarPipe,
@@ -29,7 +28,8 @@ import { AvatarPipe } from './shared/pipes/avatar.pipe';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComboboxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
