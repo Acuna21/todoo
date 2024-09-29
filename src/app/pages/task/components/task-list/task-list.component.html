@@ -9,6 +9,13 @@
                         {{ task.completed ? 'Completada' : 'Pendiente' }}
                     </span>
             </div>
+
+            <!-- Mostrar checkbox siempre y marcarlo según el estado -->
+            <div>
+                <input type="checkbox" 
+                    (change)="toggleCompletion(task)" 
+                    [checked]="task.completed">
+            </div>
             
         </div>
 

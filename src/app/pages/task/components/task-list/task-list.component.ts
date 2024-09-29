@@ -10,9 +10,9 @@ export class TaskListComponent {
   // Recibir tareas desde el componente padre
   @Input() tasks: Task[] = [];
 
-  // Método para filtrar las personas que cumplen las condiciones
-  // filterValidPeople(people: User[]): User[] {
-  //   return people.filter(person => person.age >= 18 && person.skills.length > 0);
-  // }
+  // Método para cambiar el estado de completado
+  toggleCompletion(task: Task) {
+    task.completed = !task.completed; // Alternar entre completado y pendiente
+  }
 
 }
