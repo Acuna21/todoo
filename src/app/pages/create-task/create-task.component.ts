@@ -22,7 +22,7 @@ export class CreateTaskComponent {
     private _router: Router,
   ) {
     this.taskForm = this.fb.group({
-      taskName: ['', [Validators.required, Validators.minLength(5)]],
+      title: ['', [Validators.required, Validators.minLength(5)]],
       dueDate: ['', Validators.required],
       people: this.fb.array([]) // Inicializamos un FormArray vacío
     });
@@ -69,16 +69,19 @@ export class CreateTaskComponent {
 
   // Pra validar que no haya nombres repetidos en el FormArray de personas
   validePersonNames: ValidatorFn = (control: AbstractControl):ValidationErrors | null =>{
-    const names = this.people.controls.map(person => person.get('name')?.value);
-    const founded = names.filter( name => name === control.value );
+    const names:string[] = this.people.controls.map(person => person.get('name')?.value);
+    const founded = names.filter( 
+      name => name && control.value && name.trim().toLocaleLowerCase() === control.value.trim().toLocaleLowerCase()
+    );
     if (founded.length > 1) return { repeat: 'Valor repetido' };
-    else return null
+    else {
+      return null
+    }
   };
 
    // Método para guardar la tarea
   saveTask() {
     if (this.taskForm.valid) {
-      console.log('Tarea guardada:', this.taskForm.value);
       this._todosService.createTodos(this.taskForm.value);
       this._router.navigate(['/tasks']); 
 
@@ -86,6 +89,5 @@ export class CreateTaskComponent {
       alert('Por favor, complete todos los campos correctamente.');
     }
   }
-
-
 }
+
